@@ -181,10 +181,10 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                         </IconButton>
                         <Typography variant='h6'>{item.qty}</Typography>
                         <IconButton onClick={() => increment(item)}>
-                          <AddRoundedIcon sx={{ bgcolor: '#494949' }} />
+                          <AddRoundedIcon sx={{ bgcolor: '#494949', mr: 1 }} />
                         </IconButton>
                         <IconButton onClick={() => removeFromCart(item._id)}>
-                          <ClearRoundedIcon sx={{ bgcolor: '#965362', borderRadius: 50, fontSize: 5 }} />
+                          <ClearRoundedIcon sx={{ color: "red", borderRadius: 50, fontSize: 18, bgcolor: '#666' }} />
                         </IconButton>
                       </Box>
                     </div>
