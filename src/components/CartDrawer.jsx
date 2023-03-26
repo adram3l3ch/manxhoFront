@@ -184,7 +184,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                           <AddRoundedIcon sx={{ bgcolor: '#494949' }} />
                         </IconButton>
                         <IconButton onClick={() => removeFromCart(item._id)}>
-                          <ClearRoundedIcon sx={{ bgcolor: '#494949' }} />
+                          <ClearRoundedIcon sx={{ bgcolor: '#965362', borderRadius: 50, fontSize: 5 }} />
                         </IconButton>
                       </Box>
                     </div>
