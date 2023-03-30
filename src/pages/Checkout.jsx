@@ -21,7 +21,7 @@ const Checkout = () => {
     const [country, setCountry] = useState('India')
 
 
-    var stateValue = shippingValue === "ASSAM" ? 'Assam' : state ;
+    var stateValue = shippingValue.toUpperCase() === "ASSAM" ? 'Assam' : state ;
 
     
     useEffect(()=>{
@@ -48,10 +48,10 @@ const Checkout = () => {
       >
    <Container component='main' sx={{minHeight:'100vh', maxWidth:'sm',pt:13}}>
        <Box>
-           <Typography variant='h3' align='center'>Shipping Details</Typography>
+           <Typography variant='h4' align='center'>Shipping Details</Typography>
        </Box>
        <Box component='form' onSubmit={onSubmitHandler} sx={{pb:4}}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
             <Grid item xs={12} md={6}>
                 <TextField
                 id='firstName'
@@ -111,9 +111,9 @@ const Checkout = () => {
                 fullWidth
                 margin='normal'
                 required
-                value = {shippingValue === 'ASSAM' ? 'Assam' : shippingValue}
+                value = {shippingValue}
                 onChange={(e)=>setState(e.target.value)}
-                disabled={shippingValue === "ASSAM" ? true : false}
+                disabled={shippingValue.toUpperCase() === "ASSAM" ? true : false}
                 />
             </Grid>
             <Grid item xs={12} md={6}>

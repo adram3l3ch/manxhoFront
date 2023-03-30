@@ -23,6 +23,7 @@ const AnimatedRoutes = () => {
         <Routes location={location} key={location.pathname}>
         
             <Route path='/' exact element={<Home/>}/>
+            <Route path='/home' exact element={<Home/>}/>
             <Route path='/t/:page' exact element={<Pages />}/>
         
             <Route path='/cat/:id' element={<FilteredMenu/>}/>

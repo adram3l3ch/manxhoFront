@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { toast } from "react-toastify";
 
 function LeftDrawer({ open, setOpen }) {
+
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -32,6 +33,7 @@ function LeftDrawer({ open, setOpen }) {
     setOpen(false);
     navigate('/')
   };
+
   return (
     <>
       <SwipeableDrawer
@@ -55,7 +57,7 @@ function LeftDrawer({ open, setOpen }) {
             <List>
               {userLoginDetails ? (
                 <>
-                  <ListItem onClick={() => (window.location = "/")} >
+                  <ListItem onClick={() => navigateHandler("home")}>
                     <ListItemText primary={"Home"} />
                   </ListItem>
                   <ListItem onClick={() => navigateHandler("profile")}>
@@ -69,7 +71,7 @@ function LeftDrawer({ open, setOpen }) {
                 <>
                   <ListItem
 
-                    onClick={() => (window.location = "/")}
+                    onClick={() => navigateHandler("home")}>
                   >
                     <ListItemText primary={"Home"} />
                   </ListItem>

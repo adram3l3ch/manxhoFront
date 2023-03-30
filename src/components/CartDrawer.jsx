@@ -40,7 +40,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
   }
 
   const shipping_price = (tweight, place) => {
-    switch (place) {
+    switch (place.toUpperCase()) {
       case "ASSAM": {
         return getAssamDeliveryCharge(tweight)
       }

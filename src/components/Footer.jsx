@@ -13,7 +13,7 @@ const Footer = () => {
 
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', mt: 2 , pb: 2, width: '100%' }}>
         
-        <Typography onClick={() => navigate("/t/terms")} sx={{ cursor: 'pointer' }}>Terms And Conditions</Typography>
+        <Typography onClick={() => navigate("/t/terms")} sx={{ cursor: 'pointer' }}>Terms and Conditions</Typography>
         <Typography onClick={() => navigate("/t/refunds") } sx={{ cursor: 'pointer', textDecoration: 'none' }}>Refunds and Cancellations</Typography>
         <Typography onClick={() => navigate("/t/privacy")} sx={{ cursor: 'pointer' }}>Privacy Policy</Typography>
       </Box>
