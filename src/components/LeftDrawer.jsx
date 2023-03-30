@@ -26,6 +26,7 @@ function LeftDrawer({ open, setOpen }) {
     navigate(`/${path}`);
     setOpen(false);
   };
+
   const logoutHandler = () => {
     Logout();
     setOpen(false);
@@ -48,7 +49,7 @@ function LeftDrawer({ open, setOpen }) {
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
       >
-        <Box sx={{ width: 250 }}>
+        <Box sx={{ width: 300 }}>
 
           <Box sx={{ mt: 6, ml: 3 }}>
             <List>
@@ -90,10 +91,13 @@ function LeftDrawer({ open, setOpen }) {
                 <ListItemText primary={""} />
               </ListItem>
 
-              <ListItem>
+              <ListItem onClick={() => navigateHandler("t/terms")}>
                 <ListItemText primary={"Terms and Conditions"} />
               </ListItem>
-              <ListItem >
+              <ListItem onClick={() => navigateHandler("t/refunds")}>
+                <ListItemText primary={"Refunds and Cancellations"} />
+              </ListItem>
+              <ListItem onClick={() => navigateHandler("t/privacy")}>
                 <ListItemText primary={"Privacy Policy"} />
               </ListItem>
               <ListItem >

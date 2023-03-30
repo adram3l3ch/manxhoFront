@@ -13,6 +13,7 @@ import {AnimatePresence} from 'framer-motion'
 import ChangePassword from '../pages/ChangePassword'
 import OrderDetail from '../pages/OrderDetail'
 import AllOrders from '../pages/AllOrders'
+import Pages from '../pages/TextPages'
 
 
 const AnimatedRoutes = () => {
@@ -22,6 +23,7 @@ const AnimatedRoutes = () => {
         <Routes location={location} key={location.pathname}>
         
             <Route path='/' exact element={<Home/>}/>
+            <Route path='/t/:page' exact element={<Pages />}/>
         
             <Route path='/cat/:id' element={<FilteredMenu/>}/>
 

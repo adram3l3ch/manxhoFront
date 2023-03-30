@@ -1,6 +1,5 @@
-import { Container, Divider, Paper } from "@mui/material";
-import { useContext, useEffect } from "react";
-import CartDrawer from "../components/CartDrawer";
+import { Container} from "@mui/material";
+import { useContext, useEffect} from "react";
 import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
 import Loader from "../components/Loader";
@@ -9,33 +8,34 @@ import Footer from "../components/Footer";
 
 
 
-
-
 const Home = () => {
-  const {getCategories, loading, getProducts} = useContext(ProductContext)
+  const { getCategories, loading, getProducts } = useContext(ProductContext)
 
-  useEffect (()=>{
+  useEffect(() => {
     getProducts()
     getCategories()
-    
-  }, [])
+
+    }, [])
+
 
   return (
 
-    loading ? (<Loader/>) : (
-      <> 
-      <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity:0}}
-      
-      >
-      <Container sx={{minheight:'100vh'}}>
-        <Category />
-        <Footer/>
-      </Container>
-      </motion.div> 
-      
+    loading ? (<Loader />) : (
+      <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+
+        >
+          <Container sx={{ minheight: '100vh' }}>
+            <Category />
+
+            <Footer />
+
+          </Container>
+        </motion.div>
+
       </>
     )
 
