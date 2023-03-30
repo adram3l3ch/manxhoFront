@@ -210,7 +210,7 @@ const loadScript = (url)=>{
    >
      <Container sx={{pt:12, minHeight:'100vh'}}>
        <Box>
-         <Typography variant='h3' align='center'>Order Review</Typography>
+         <Typography variant='h4' align='center'>Order Review</Typography>
        </Box>
        <Box>
          <List>
@@ -224,7 +224,7 @@ const loadScript = (url)=>{
                 />
                </ListItemAvatar>
                <ListItemText sx={{pl:2}}>{item.name}</ListItemText>
-               <Typography variant='body2'>{item.qty} x {item.price} &#8377; {Number(item.price * item.qty).toFixed(0)}</Typography>
+               <Typography variant='body2'>{item.qty} x {item.price} - &#8377;{Number(item.price * item.qty).toFixed(0)}</Typography>
              </ListItem>
             
            ))}
@@ -277,10 +277,12 @@ const loadScript = (url)=>{
           
            </ListItem>
          </List>
+
+         <Divider/>
         
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <Typography variant='h5' gutterBottom>Shipping</Typography>
+            <Typography variant='h5' gutterBottom>Shipping Address:</Typography>
             <Typography>{shippingDetails.firstName} {shippingDetails.lastName}</Typography>
             <Typography>{shippingDetails.address}</Typography>
             <Typography>{shippingDetails.city} - {shippingDetails.zipcode} </Typography> 

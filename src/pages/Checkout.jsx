@@ -8,20 +8,16 @@ import { toast } from 'react-toastify'
 
 const Checkout = () => {
 
-    const {addShippingDetails, shippingDetails, cartItems, shippingValue, zipcode, place} = useContext(ProductContext)
+    const {addShippingDetails, shippingDetails, cartItems, setShippingValue, shippingValue, zipcode, place} = useContext(ProductContext)
     const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState(shippingDetails?.firstName)
     const [lastName, setLastName] =useState(shippingDetails?.lastName)
     const [address, setAddress] = useState(shippingDetails?.address) 
-    const [city, setCity] = useState(place) 
-    const [state, setState] = useState(shippingValue)  
+    const [city, setCity] = useState(place)    
     // const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
     const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
     const [country, setCountry] = useState('India')
-
-
-    var stateValue = shippingValue.toUpperCase() === "ASSAM" ? 'Assam' : state ;
 
     
     useEffect(()=>{
@@ -33,7 +29,7 @@ const Checkout = () => {
     const onSubmitHandler=(e)=>{
         e.preventDefault()
 
-        addShippingDetails({firstName, lastName, address, city,  stateValue , zipcode, phoneNumber, country})
+        addShippingDetails({firstName, lastName, address, city,  shippingValue , zipcode, phoneNumber, country})
         navigate('/order_review')
         
     }
@@ -112,8 +108,8 @@ const Checkout = () => {
                 margin='normal'
                 required
                 value = {shippingValue}
-                onChange={(e)=>setState(e.target.value)}
-                disabled={shippingValue.toUpperCase() === "ASSAM" ? true : false}
+                onChange={(e)=>setShippingValue(e.target.value)}
+                disabled={true}
                 />
             </Grid>
             <Grid item xs={12} md={6}>

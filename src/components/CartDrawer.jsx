@@ -40,7 +40,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
   }
 
   const shipping_price = (tweight, place) => {
-    switch (place.toUpperCase()) {
+    switch (place) {
       case "ASSAM": {
         return getAssamDeliveryCharge(tweight)
       }
@@ -54,7 +54,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const { cartItems, dispatch, removeFromCart, shippingValue, setShippingValue, setZipcode, setPlace } = useContext(ProductContext)
+  const { cartItems, dispatch, removeFromCart, setShippingValue, setZipcode, setPlace } = useContext(ProductContext)
 
   const [pinCode, setPinCode] = useState('');
   const [isAssam, setIsAssam] = useState('');
@@ -73,11 +73,12 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     if (pinCode.length === 6) {
       try {
         const response = await axios.get(`https://api.manxho.co.in/api/check_pincode/${pinCode}/`);
-        setShippingValue(response.data.state);
+        const lstate = response.data.state.toUppercase()
+        setShippingValue(lstate);
         setIsLoading(false);
         setZipcode(pinCode);
         setPlace(response.data.place)
-        setIsAssam(response.data.state.toLowerCase() === "assam" ? "ASSAM" : "INDIA");
+        setIsAssam(lstate === "ASSAM" ? "ASSAM" : "INDIA");
 
       }
 
