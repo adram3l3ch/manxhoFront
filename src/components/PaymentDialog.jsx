@@ -82,7 +82,15 @@ const PaymentDialog = () => {
         <DialogActions sx={{ display: 'flex', justifyContent: 'center' }}>
           <Button onClick={() => UseUPI()} size='small' variant='contained' endIcon={<Box component='img' src={UPI} sx={{ width: 40, height: 40, borderRadius: 10, }} />} sx={{ color: '#ffffff', backgroundColor: 'black', ':hover': { bgcolor: 'brown' } }}>Pay With UPI</Button>
           <Button size='small' variant='contained' disabled>Pay With Razorpay</Button>
-        </DialogActions></>
+          
+          
+        </DialogActions>
+        <Typography sx={{
+          color: "red!important",
+          fontSize: 11,
+          textAlign: "right"
+        }}>Razorpay Temporarily Disabled!</Typography>
+        </>
       }
       {
         showBox && <Box>
