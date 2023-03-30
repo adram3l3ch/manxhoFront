@@ -73,7 +73,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     if (pinCode.length === 6) {
       try {
         const response = await axios.get(`https://api.manxho.co.in/api/check_pincode/${pinCode}/`);
-        const lstate = response.data.state.toUppercase()
+        const lstate = response.data.state.toUpperCase()
         setShippingValue(lstate);
         setIsLoading(false);
         setZipcode(pinCode);
