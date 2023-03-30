@@ -109,7 +109,7 @@ const Checkout = () => {
                 required
                 value = {shippingValue}
                 onChange={(e)=>setShippingValue(e.target.value)}
-                disabled={true}
+                disabled={false}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
