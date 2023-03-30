@@ -28,8 +28,8 @@ const Checkout = () => {
 
     const onSubmitHandler=(e)=>{
         e.preventDefault()
-
-        addShippingDetails({firstName, lastName, address, city,  shippingValue , zipcode, phoneNumber, country})
+        const stateValue = shippingValue
+        addShippingDetails({firstName, lastName, address, city, stateValue, zipcode, phoneNumber, country})
         navigate('/order_review')
         
     }
