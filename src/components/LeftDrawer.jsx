@@ -69,10 +69,7 @@ function LeftDrawer({ open, setOpen }) {
                 </>
               ) : (
                 <>
-                  <ListItem
-
-                    onClick={() => navigateHandler("home")}>
-                  >
+                  <ListItem onClick={() => navigateHandler("home")}>
                     <ListItemText primary={"Home"} />
                   </ListItem>
 

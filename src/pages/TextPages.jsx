@@ -13,7 +13,7 @@ const Pages = () => {
   return (
     <Container>
       <Box sx={{
-        backgroundColor: "#444",
+        backgroundColor: "#999",
         mt: 20
       }}>
 
