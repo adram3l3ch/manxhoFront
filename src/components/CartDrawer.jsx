@@ -54,7 +54,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const { cartItems, dispatch, removeFromCart, setShippingValue, setZipcode, setPlace } = useContext(ProductContext)
+  const { cartItems, dispatch, removeFromCart, setShippingValue, setZipcode, setPlace, orderIncrement, orderDecrement } = useContext(ProductContext)
 
   const [pinCode, setPinCode] = useState('');
   const [isAssam, setIsAssam] = useState('');
@@ -128,6 +128,8 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     })
   }
 
+  
+
   return (
     <>
       <motion.div
@@ -177,11 +179,17 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
                       </ListItem>
                       <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', bgcolor: '#393939' }}>
-                        <IconButton onClick={() => decrement(item)}>
+                        {/* <IconButton onClick={() => decrement(item)}>
+                          <RemoveRoundedIcon sx={{ bgcolor: '#494949' }} />
+                        </IconButton> */}
+                         <IconButton onClick={() => orderDecrement(item)}>
                           <RemoveRoundedIcon sx={{ bgcolor: '#494949' }} />
                         </IconButton>
                         <Typography variant='h6'>{item.qty}</Typography>
-                        <IconButton onClick={() => increment(item)}>
+                        {/* <IconButton onClick={() => increment(item)}>
+                          <AddRoundedIcon sx={{ bgcolor: '#494949', mr: 1 }} />
+                        </IconButton> */}
+                         <IconButton onClick={() => orderIncrement(item)}>
                           <AddRoundedIcon sx={{ bgcolor: '#494949', mr: 1 }} />
                         </IconButton>
                         <IconButton onClick={() => removeFromCart(item._id)}>
@@ -195,7 +203,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
                   <ListItem>
                     <ListItemText>Subtotal:</ListItemText>
-                    <Typography>&#8377; {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}</Typography>
+                    <Typography>&#8377; {cartItems?.reduce((acc, item) => acc + item.qty * item.price, 0)}</Typography>
                   </ListItem>
                   <ListItem>
                     <ListItemText>Total Weight:</ListItemText>
@@ -208,7 +216,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
                   <ListItem>
                     <ListItemText>Total:</ListItemText>
-                    <Typography>&#8377; {cartItems?.subTotal + cartItems.shippingPrice}  </Typography>
+                    <Typography>&#8377; {cartItems?.subTotal + cartItems?.shippingPrice}  </Typography>
                   </ListItem>
                   <ListItem>
                     <FormControl>
