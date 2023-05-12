@@ -12,7 +12,10 @@ const ProductContext = createContext();
 export const  ProductContextProvider = ({children}) =>{
 
     const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
+    const local_CartItems = localStorage.getItem('CartItems') ? JSON.parse(localStorage.getItem('CartItems')) : null
 
+
+    
     const [showCart, setShowCart] = useState(false);
     const [openPaymentModal, setOpenPaymentModal] = useState(false)
     const [orderTotalAmoount, setOrderTotalAmount] = useState('')
@@ -26,7 +29,8 @@ export const  ProductContextProvider = ({children}) =>{
     const initialState = {
         products:[],
         categories:[],
-        cartItems:[],
+        // cartItems:[],
+        cartItems:local_CartItems,
         shippingDetails:local_shipping_details,
         allOrders:[],
         loading:true,
@@ -62,27 +66,100 @@ export const  ProductContextProvider = ({children}) =>{
     }
 
     const addtoCart = async (product)=>{
+
+        const item = {
+            _id: product._id,
+            name: product.title,
+            image: product.image,
+            price: product.price,
+            weight: product.qty,
+            qty: 1,
+          };
+
+          const cartData = localStorage.getItem('CartItems');
+          const cart = cartData ?  JSON.parse(cartData) : []
+
+        //   Check if the item already exist in the local storage cart
+        const existItem = cart.find((x)=>x._id === item._id );
+
+        if (existItem){
+            existItem.qty += 1;
+        }else{
+            cart.push(item);
+        }
+
+        localStorage.setItem('CartItems', JSON.stringify(cart))
+
+        // Dispatch the updated cart data to the reducer
         dispatch({
-            type:'ADD_TO_CART',
-            payload: {
-                _id : product._id,
-                name:product.title,
-                image:product.image,
-                price:product.price,
-                weight:product.qty,
-                qty:1,
-            }
-        })
+            type: 'UPDATE_CART',
+            payload: cart,
+        });
+
+        // dispatch({
+        //     type:'ADD_TO_CART',
+        //     payload: {
+        //         _id : product._id,
+        //         name:product.title,
+        //         image:product.image,
+        //         price:product.price,
+        //         weight:product.qty,
+        //         qty:1,
+        //     }
+        // })
         toast.success('Added To Cart')
     }
 
 
     const removeFromCart = async (id)=>{
+        const cartData = localStorage.getItem('CartItems');
+        const cart = cartData ?  JSON.parse(cartData) : []
+        const updatedCartItems = cart.filter((x)=>x._id !== id)
+
+        localStorage.setItem('CartItems', JSON.stringify(updatedCartItems))
         dispatch({
-            type:'REMOVE_FROM_CART',
-            payload:id
-        })
+            type: 'UPDATE_CART',
+            payload: updatedCartItems,
+        });
+
+
+        // dispatch({
+        //     type:'REMOVE_FROM_CART',
+        //     payload:id
+        // })
     }
+
+
+    const orderIncrement = async(product) =>{
+        const cartData = localStorage.getItem('CartItems');
+        const cart = cartData ?  JSON.parse(cartData) : []
+
+        const existItem = cart.find((x)=>x._id === product._id)
+        if (existItem){
+           existItem.qty += 1 ;
+        }
+        localStorage.setItem('CartItems', JSON.stringify(cart))
+        dispatch({
+            type: 'UPDATE_CART',
+            payload: cart,
+        });
+    }
+
+    const orderDecrement = async(product) =>{
+        const cartData = localStorage.getItem('CartItems');
+        const cart = cartData ?  JSON.parse(cartData) : []
+
+        const existItem = cart.find((x)=>x._id === product._id)
+        if (existItem && existItem.qty > 1){
+           existItem.qty -= 1 ;
+        }
+        localStorage.setItem('CartItems', JSON.stringify(cart))
+        dispatch({
+            type: 'UPDATE_CART',
+            payload: cart,
+        });
+    }
+
 
     const addShippingDetails = (data)=>{
         dispatch({
@@ -154,6 +231,10 @@ export const  ProductContextProvider = ({children}) =>{
         removeFromCart:removeFromCart,
         addShippingDetails:addShippingDetails,
         updateOrder:updateOrder,
+
+        orderIncrement:orderIncrement,
+        orderDecrement:orderDecrement,
+        
 
 
     }}>

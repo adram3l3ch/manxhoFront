@@ -12,6 +12,11 @@ const ProductReducer = (state, action) =>{
                 categories : action.payload,
                 loading : false
             }
+        case 'UPDATE_CART':
+            return {
+                ...state,
+                cartItems: action.payload,
+            };
 
         case 'ADD_TO_CART':
             const item = action.payload

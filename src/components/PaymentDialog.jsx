@@ -61,12 +61,13 @@ const PaymentDialog = () => {
   }
 
   const paymentHandler = () => {
-    navigate(`/order_detail/${orderId}`)
     toast.success('Thanks For ordering!')
     dispatch({
       type: 'CLEAR_CART'
     })
+    localStorage.removeItem('CartItems')
     setCoupon([])
+    navigate(`/order_detail/${orderId}`)
   }
 
 
